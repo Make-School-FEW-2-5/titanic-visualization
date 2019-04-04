@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
-    const json = await axios.get('http://584f50b4.ngrok.io')
+    const json = await axios.get('http://737ab990.ngrok.io')
     console.log('hi', json);
 
     if(json) {
@@ -29,10 +29,6 @@ class App extends Component {
       maleAge: this.getMaxMinWhere("age", "sex", "male"),
       femaleAge: this.getMaxMinWhere("age", "sex", "female"),
       survivorAge: this.getMaxMinWhere("age", "survived", "Yes"),
-      males: this.filterBy("sex", "male"),
-      maleSurviors: this.filterTwiceBy("sex", "male", "survived", "Yes"),
-      females: this.filterBy("sex", "female"),
-      femaleSurviors: this.filterTwiceBy("sex", "female", "survived", "Yes"),
     })
     }
 
@@ -49,6 +45,7 @@ class App extends Component {
   }
 
   filterTwiceBy = (fieldName, value, fieldName1, value1) => {
+    
     return this.state.json.filter(passenger => 
       passenger.fields[fieldName] == value
     ).filter(passenger => 
@@ -90,41 +87,50 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           {this.state.json &&
-          <>
           <div>
-            <p>
-              Max Fare: { this.state.fare? this.state.fare.max: "" }
-              <br/>
-              Min Fare: { this.state.fare? this.state.fare.min: "" }
-            </p>
-            <p>
-              Oldest: { this.state.age? this.state.age.max: "" }
-              <br/>
-              Youngest: { this.state.age? this.state.age.min: "" }
-            </p>
-            <p>
-              Oldest Male: { this.state.maleAge? this.state.maleAge.max: "" }
-              <br/>
-              Oldest Female: { this.state.femaleAge? this.state.femaleAge.max: "" }
-            </p>
-            <p>
-              Youngest Male: { this.state.maleAge? this.state.maleAge.min: "" }
-              <br/>
-              Youngest Female: { this.state.femaleAge? this.state.femaleAge.min: "" }
-            </p>
-            <p>
-              Oldest Survivor: { this.state.survivorAge? this.state.survivorAge.max: "" }
-              <br/>
-              Youngest Survivor: { this.state.survivorAge? this.state.survivorAge.min: "" }
-            </p>
+            <div>
+              <p>
+                Max Fare: { this.state.fare? this.state.fare.max: "" }
+                <br/>
+                Min Fare: { this.state.fare? this.state.fare.min: "" }
+              </p>
+              <p>
+                Oldest: { this.state.age? this.state.age.max: "" }
+                <br/>
+                Youngest: { this.state.age? this.state.age.min: "" }
+              </p>
+              <p>
+                Oldest Male: { this.state.maleAge? this.state.maleAge.max: "" }
+                <br/>
+                Oldest Female: { this.state.femaleAge? this.state.femaleAge.max: "" }
+              </p>
+              <p>
+                Youngest Male: { this.state.maleAge? this.state.maleAge.min: "" }
+                <br/>
+                Youngest Female: { this.state.femaleAge? this.state.femaleAge.min: "" }
+              </p>
+              <p>
+                Oldest Survivor: { this.state.survivorAge? this.state.survivorAge.max: "" }
+                <br/>
+                Youngest Survivor: { this.state.survivorAge? this.state.survivorAge.min: "" }
+              </p>
+            </div>
+            <div>
+              <Circle color='blue' number='1' size='1'>
+                <Circle 
+                color='green'
+                number={this.filterTwiceBy("sex", "male", "survived", "Yes").length}
+                size={this.filterTwiceBy("sex", "male", "survived", "Yes").length / this.filterBy("sex", "male").length }
+                />
+              </Circle>
+              <Circle color='blue' number='1' size='1'>
+                <Circle
+                number={this.filterTwiceBy("sex", "female", "survived", "Yes").length}
+                size={this.filterTwiceBy("sex", "female", "survived", "Yes").length / this.filterBy("sex", "female").length }
+                />
+              </Circle>
+            </div>
           </div>
-          <div>
-            <Circle 
-            number={this.state.maleSurviors.length}
-            total={this.state.males.length}
-            />
-          </div>
-          </>
           }
         </header>
       </div>
