@@ -8,11 +8,12 @@ const Bubble = styled.div`
   width: ${props => props.size * vwMultiplier + 'vw'};
   height: ${props =>  props.size * vwMultiplier + 'vw'};
   position:  ${props => props.children.type? 'relative': 'absolute'};
-  left: ${props => props.children.type? '0': '0vw'};
+  left: ${props => props.children.type? '0':vwMultiplier / 2 - (props.size * vwMultiplier / 2) + 'vw'};
   top: ${props => props.children.type? '0':vwMultiplier / 2 - (props.size * vwMultiplier / 2) + 'vw'};
   background-color: ${props => props.color || 'red'};
   text-align: center;
   line-height:${props => props.size * vwMultiplier + 'vw'};
+  transition: 1000ms;
 `;
 
 

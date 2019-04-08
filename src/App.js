@@ -11,7 +11,8 @@ class App extends Component {
     super(props)
   
     this.state = {
-       json: ''
+       json: '',
+       men: 'true'
     }
   }
 
@@ -79,29 +80,50 @@ class App extends Component {
       return accum
     }, {"max": this.state.json[1].fields[fieldName], "min": this.state.json[1].fields[fieldName]})
   }
+
+  getCircleData() {
+    if (this.state.men) {
+      return {
+        color: 'PaleTurquoise',
+        number: this.filterTwiceBy("sex", "male", "survived", "Yes").length,
+        size: this.filterTwiceBy("sex", "male", "survived", "Yes").length / this.filterBy("sex", "male").length
+      }
+    } else {
+      return {
+        color: 'Plum',
+        number: this.filterTwiceBy("sex", "female", "survived", "Yes").length,
+        size: this.filterTwiceBy("sex", "female", "survived", "Yes").length / this.filterBy("sex", "female").length
+      }
+    }
+  }
+
+  handleClick = (e) => {
+    console.log("click", e.target);
+    
+    if (this.state.men) {
+      e.target.innerHTML = "Men"
+      this.setState({men: false})
+    } else {
+      e.target.innerHTML = "Women"
+      this.setState({men: true})
+    }
+  }
   
   render() {
 
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           {this.state.json &&
           <div>
             <div>
-              <Circle color='blue' number='1' size='1'>
+              <Circle color='gray' number='1' size='1'>
                 <Circle 
-                color='green'
-                number={this.filterTwiceBy("sex", "male", "survived", "Yes").length}
-                size={this.filterTwiceBy("sex", "male", "survived", "Yes").length / this.filterBy("sex", "male").length }
+                {...this.getCircleData()}
                 />
               </Circle>
-              <Circle color='blue' number='1' size='1'>
-                <Circle
-                number={this.filterTwiceBy("sex", "female", "survived", "Yes").length}
-                size={this.filterTwiceBy("sex", "female", "survived", "Yes").length / this.filterBy("sex", "female").length }
-                />
-              </Circle>
+              <button type='button' onClick={(e)=> this.handleClick(e)}>Women</button>
             </div>
           </div>
           }
