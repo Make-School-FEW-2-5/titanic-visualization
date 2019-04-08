@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styled from 'styled-components/macro'
 
 import Circle from './Circle';
 
@@ -101,10 +102,11 @@ class App extends Component {
     console.log("click", e.target);
     
     if (this.state.men) {
-      e.target.innerHTML = "Men"
+      e.target.innerHTML = "Show Men"
+      e.target.style = 
       this.setState({men: false})
     } else {
-      e.target.innerHTML = "Women"
+      e.target.innerHTML = "Show Women"
       this.setState({men: true})
     }
   }
@@ -123,7 +125,7 @@ class App extends Component {
                 {...this.getCircleData()}
                 />
               </Circle>
-              <button type='button' onClick={(e)=> this.handleClick(e)}>Women</button>
+              <Button men={this.state.men} type='button' onClick={(e)=> this.handleClick(e)}>Show Women</Button>
             </div>
           </div>
           }
@@ -132,5 +134,14 @@ class App extends Component {
     );
   }
 }
+
+const Button = styled.button`
+  width: 25%;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background-color: ${props => props.men? 'Plum': 'PaleTurquoise'};
+  transition: 1000ms;
+`
 
 export default App;

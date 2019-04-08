@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components/macro'
 
-const vwMultiplier = 30;
+const vwMultiplier = 50;
 
 const Bubble = styled.div`
   border-radius: 50%;
