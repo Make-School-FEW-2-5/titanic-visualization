@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components/macro'
 
 import Circle from './Circle';
+import Visualization from './Visualization'
 
 import logo from './logo.svg';
 import './App.css';
@@ -13,7 +14,6 @@ class App extends Component {
   
     this.state = {
        json: '',
-       men: 'true'
     }
   }
 
@@ -25,89 +25,6 @@ class App extends Component {
     this.setState({
       json: json.data
     })
-    this.setState({
-      fare: this.getMaxMin("fare"),
-      age: this.getMaxMin("age"),
-      maleAge: this.getMaxMinWhere("age", "sex", "male"),
-      femaleAge: this.getMaxMinWhere("age", "sex", "female"),
-      survivorAge: this.getMaxMinWhere("age", "survived", "Yes"),
-    })
-    }
-
-    console.log(this.state);
-    
-
-    
-  }
-
-  filterBy = (fieldName, value) => {
-    return this.state.json.filter(passenger => 
-      passenger.fields[fieldName] == value
-    )
-  }
-
-  filterTwiceBy = (fieldName, value, fieldName1, value1) => {
-    
-    return this.state.json.filter(passenger => 
-      passenger.fields[fieldName] == value
-    ).filter(passenger => 
-      passenger.fields[fieldName1] == value1
-    )
-  }
-
-  getMaxMin = (fieldName) => {
-    return this.state.json.reduce((accum, passenger) => {
-      if (passenger.fields[fieldName] > accum.max) {
-        accum.max = passenger.fields[fieldName]
-      }
-      if (passenger.fields[fieldName] < accum.min) {
-        accum.min = passenger.fields[fieldName]
-      }
-      return accum
-    }, {"max": this.state.json[1].fields[fieldName], "min": this.state.json[1].fields[fieldName]})
-  }
-
-  getMaxMinWhere = (fieldName, checkField, value) => {
-    const filteredPassengers = this.state.json.filter(passenger => 
-      passenger.fields[checkField] == value
-      )
-    return filteredPassengers.reduce((accum, passenger) => {
-      if (passenger.fields[fieldName] > accum.max) {
-        accum.max = passenger.fields[fieldName]
-      }
-      if (passenger.fields[fieldName] < accum.min) {
-        accum.min = passenger.fields[fieldName]
-      }
-      return accum
-    }, {"max": this.state.json[1].fields[fieldName], "min": this.state.json[1].fields[fieldName]})
-  }
-
-  getCircleData() {
-    if (this.state.men) {
-      return {
-        color: 'PaleTurquoise',
-        number: this.filterTwiceBy("sex", "male", "survived", "Yes").length,
-        size: this.filterTwiceBy("sex", "male", "survived", "Yes").length / this.filterBy("sex", "male").length
-      }
-    } else {
-      return {
-        color: 'Plum',
-        number: this.filterTwiceBy("sex", "female", "survived", "Yes").length,
-        size: this.filterTwiceBy("sex", "female", "survived", "Yes").length / this.filterBy("sex", "female").length
-      }
-    }
-  }
-
-  handleClick = (e) => {
-    console.log("click", e.target);
-    
-    if (this.state.men) {
-      e.target.innerHTML = "Show Men"
-      e.target.style = 
-      this.setState({men: false})
-    } else {
-      e.target.innerHTML = "Show Women"
-      this.setState({men: true})
     }
   }
   
@@ -119,14 +36,7 @@ class App extends Component {
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           {this.state.json &&
           <div>
-            <div>
-              <Circle color='gray' number='1' size='1'>
-                <Circle 
-                {...this.getCircleData()}
-                />
-              </Circle>
-              <Button men={this.state.men} type='button' onClick={(e)=> this.handleClick(e)}>Show Women</Button>
-            </div>
+            <Visualization data={this.state.json}/>
           </div>
           }
         </header>
@@ -135,13 +45,6 @@ class App extends Component {
   }
 }
 
-const Button = styled.button`
-  width: 25%;
-  height: 32px;
-  border: none;
-  border-radius: 8px;
-  background-color: ${props => props.men? 'Plum': 'PaleTurquoise'};
-  transition: 1000ms;
-`
+
 
 export default App;

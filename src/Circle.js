@@ -14,7 +14,8 @@ const Bubble = styled.div`
   text-align: center;
   line-height:${props => props.size * vwMultiplier + 'vw'};
   transition: 1000ms;
-`;
+  box-shadow: 0px 10px 40px -12px rgba(0,0,0,0.75);
+  `
 
 
 export default class Circle extends Component {
