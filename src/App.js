@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
-    const json = await axios.get('http://385913b2.ngrok.io')
+    const json = await axios.get('titanic-passengers.json')
     console.log('hi', json);
 
     if(json) {
