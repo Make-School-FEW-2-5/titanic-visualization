@@ -20,8 +20,6 @@ const Bubble = styled.div`
 
 export default class Circle extends Component {
   constructor(props) {
-    console.log(props.children);
-    
     super(props)
   
     this.state = {

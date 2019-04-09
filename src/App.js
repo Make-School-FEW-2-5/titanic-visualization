@@ -19,7 +19,6 @@ class App extends Component {
 
   componentDidMount = async () => {
     const json = await axios.get('http://385913b2.ngrok.io')
-    console.log('hi', json);
 
     if(json) {
     this.setState({

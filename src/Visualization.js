@@ -5,6 +5,7 @@ import Circle from './Circle';
 import { filterTwiceBy, filterBy } from './helperFunctions'
 
 const Button = styled.button`
+  margin: 40px auto;
   width: 25%;
   height: 32px;
   border: none;
@@ -40,11 +41,9 @@ export default class Visualization extends Component {
     }
   }
   handleClick = (e) => {
-    console.log("click", e.target);
     
     if (this.state.toggle) {
       e.target.innerHTML = "Show Men"
-      e.target.style = 
       this.setState({toggle: false})
     } else {
       e.target.innerHTML = "Show Women"
@@ -56,7 +55,7 @@ export default class Visualization extends Component {
     return (
       <div>
         <Circle color='gray' number='1' size='1'>
-          <Circle 
+          <Circle
           {...this.getCircleData()}
           />
         </Circle>
