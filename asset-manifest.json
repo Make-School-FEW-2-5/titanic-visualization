@@ -1,14 +1,14 @@
 {
-  "main.css": "/titanic-visualization/static/css/main.e34bf368.chunk.css",
-  "main.js": "/titanic-visualization/static/js/main.0871cd24.chunk.js",
-  "main.js.map": "/titanic-visualization/static/js/main.0871cd24.chunk.js.map",
-  "runtime~main.js": "/titanic-visualization/static/js/runtime~main.3ed7ee1f.js",
-  "runtime~main.js.map": "/titanic-visualization/static/js/runtime~main.3ed7ee1f.js.map",
-  "static/js/2.e783275d.chunk.js": "/titanic-visualization/static/js/2.e783275d.chunk.js",
-  "static/js/2.e783275d.chunk.js.map": "/titanic-visualization/static/js/2.e783275d.chunk.js.map",
-  "index.html": "/titanic-visualization/index.html",
-  "precache-manifest.7fd76b4c9e17c12b4043d124787219f7.js": "/titanic-visualization/precache-manifest.7fd76b4c9e17c12b4043d124787219f7.js",
-  "service-worker.js": "/titanic-visualization/service-worker.js",
-  "static/css/main.e34bf368.chunk.css.map": "/titanic-visualization/static/css/main.e34bf368.chunk.css.map",
-  "static/media/logo.svg": "/titanic-visualization/static/media/logo.36c59f02.svg"
+  "main.css": "/static/css/main.e34bf368.chunk.css",
+  "main.js": "/static/js/main.4825a15c.chunk.js",
+  "main.js.map": "/static/js/main.4825a15c.chunk.js.map",
+  "runtime~main.js": "/static/js/runtime~main.c5541365.js",
+  "runtime~main.js.map": "/static/js/runtime~main.c5541365.js.map",
+  "static/js/2.ba971265.chunk.js": "/static/js/2.ba971265.chunk.js",
+  "static/js/2.ba971265.chunk.js.map": "/static/js/2.ba971265.chunk.js.map",
+  "index.html": "/index.html",
+  "precache-manifest.76e9e833f9c15c190ac179d846f47344.js": "/precache-manifest.76e9e833f9c15c190ac179d846f47344.js",
+  "service-worker.js": "/service-worker.js",
+  "static/css/main.e34bf368.chunk.css.map": "/static/css/main.e34bf368.chunk.css.map",
+  "static/media/logo.svg": "/static/media/logo.36c59f02.svg"
 }
